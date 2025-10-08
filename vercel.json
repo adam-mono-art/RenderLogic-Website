@@ -1,7 +1,10 @@
 {
   "rewrites": [
     { "source": "/portfolio/paddle", "destination": "https://paddle-visualizer.vercel.app/" },
+    { "source": "/portfolio/paddle/(.*)", "destination": "https://paddle-visualizer.vercel.app/$1" },
     { "source": "/portfolio/watch", "destination": "https://watch-visualizer.vercel.app/" },
-    { "source": "/portfolio/patio3d", "destination": "https://frame-visualizer.vercel.app/" }
+    { "source": "/portfolio/watch/(.*)", "destination": "https://watch-visualizer.vercel.app/$1" },
+    { "source": "/portfolio/patio3d", "destination": "https://frame-visualizer.vercel.app/" },
+    { "source": "/portfolio/patio3d/(.*)", "destination": "https://frame-visualizer.vercel.app/$1" }
   ]
 }

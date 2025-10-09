@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useParams, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams, Navigate, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -20,17 +20,41 @@ function ExternalRedirect({ to }) {
   }, [])
   
   return (
-    // <div className='blog-section'>
-    //   <iframe 
-    //     title='blog'
-    //     src={to} 
-    //     loading="eager"
-    //     referrerPolicy="no-referrer-when-downgrade"
-    //     allow="clipboard-read; clipboard-write; fullscreen"
-    //     sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
-    //   />
-    // </div>
     <></>
+  )
+}
+
+function ExternalIframe({ to }) {  
+  const navigate = useNavigate();
+  return (
+    <div className='blog-section'>
+      <button className="back-button" onClick={() => navigate("/portfolio")}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="arrow-icon"
+        >
+          <line x1="19" y1="12" x2="5" y2="12" />
+          <polyline points="12 19 5 12 12 5" />
+        </svg>
+        <span className="back-label">Back</span>
+      </button>
+      <iframe 
+        title='blog'
+        src={to} 
+        loading="eager"
+        referrerPolicy="no-referrer-when-downgrade"
+        allow="clipboard-read; clipboard-write; fullscreen"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+      />
+    </div>
   )
 }
 
@@ -98,6 +122,9 @@ export default function App() {
         <Route path="/contact" element={<StandardPage><Contact/></StandardPage>} />
         <Route path="/newsletter" element={<StandardPage><Newsletter/></StandardPage>} />
         <Route path="/blog" element={<ExternalRedirect to="https://renderlogic-blog.net" />} />
+        <Route path="/portfolio/paddle" element={<ExternalIframe to="https://paddle-visualizer.vercel.app" />} />
+        <Route path="/portfolio/watch" element={<ExternalIframe to="https://watch-visualizer.vercel.app" />} />
+        <Route path="/portfolio/patio3d" element={<ExternalIframe to="https://frame-visualizer.vercel.app" />} />
         <Route path="/" element={<ScrollLayout />} />
         <Route path="/:sectionId" element={<ScrollLayout />} />
         <Route path="*" element={<Navigate to="/" replace />} />
